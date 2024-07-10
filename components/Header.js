@@ -32,12 +32,12 @@ const Header = () => {
           throw new Error(`Error: ${res.status}`);
         }
 
-        const { city, country, country_code } = data;
+       // const { city, country, country_code } = data;
 
         setLocation({
-          city: city || null,
-          country: country || null,
-          countryCode: country_code || null,
+          country: data.country || null,
+          city: data.city || null,
+          countryCode: data.country_code || null,
         });
       } catch (error) {
         console.error("Error fetching IP data:", error);
