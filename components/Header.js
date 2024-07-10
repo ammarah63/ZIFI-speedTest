@@ -26,18 +26,20 @@ const Header = () => {
     const fetchLocation = async () => {
       try {
         const res = await fetch(`https://ipapi.co/${ipAddress}/json/`);
-        const data = await res.json();
-
         if (!res.ok) {
           throw new Error(`Error: ${res.status}`);
         }
-
-       // const { city, country, country_code } = data;
+        const data = await res.json();
 
         setLocation({
-          country: data.country || null,
           city: data.city || null,
+          country: data.country || null,
           countryCode: data.country_code || null,
+          lat: data.latitude || null,
+          lon: data.longitude || null,
+          isp: data.isp || null,
+          query: data.query || null,
+          org: data.org || null,
         });
       } catch (error) {
         console.error("Error fetching IP data:", error);
@@ -45,8 +47,11 @@ const Header = () => {
       }
     };
 
-    fetchLocation();
-  }, []);
+    if (ipAddress) {
+      fetchLocation();
+    }
+  }, [ipAddress]);
+
   return (
     <>
       <div className="grid grid-cols-4 md:hidden pt-2">
