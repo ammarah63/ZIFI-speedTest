@@ -76,10 +76,10 @@ const MoreInformation = ({ setOpen }) => {
   return (
     <>
       <div className="bg-black md:bg-opacity-95 h-3/4 z-50 fixed inset-x-0 inset-y-[2rem] md:inset-y-[4.2rem] lg:inset-y-[4.5rem] 3xl:inset-y-[5.3rem] 4xl:inset-y-[6.9rem]">
-        <p className="text-sm 3xl:text-xl my-4 md:my-0 3xl:my-10 4xl:my-16 4xl:text-3xl text-center md:text-start md:ms-5 md:mt-3 text-[#7F7F7F] tracking-widest">
+        <p className="text-sm 3xl:text-xl my-4 md:my-0 3xl:mt-10 4xl:mt-16 4xl:text-3xl text-center md:text-start md:ms-5 md:mt-3 text-[#7F7F7F] tracking-widest">
           MORE INFORMATION
         </p>
-        <div className="absolute md:mt-5 -top-6 left-2 md:ml-5 3xl:ml-4 4xl:ml-4 md:static ">
+        <div className="absolute -top-6 left-2 md:ml-5 3xl:ml-4 4xl:ml-4 md:static ">
           <button onClick={() => setOpen(false)} className=" ">
             {" "}
             <svg
@@ -90,7 +90,7 @@ const MoreInformation = ({ setOpen }) => {
               id="left"
               data-name="Flat Color"
               xmlns="http://www.w3.org/2000/svg"
-              className="icon flat-color ms-10 mt-10 4xl:my-10 3xl:my-6 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12"
+              className="icon flat-color ms-10 md:ms-0 mt-10 lg:mt-5 4xl:my-10 3xl:my-6 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12"
              
             >
               <path
@@ -103,7 +103,7 @@ const MoreInformation = ({ setOpen }) => {
         </div>
 
         <div className="flex flex-col md:mt-4 lg:mt-5 3xl:mt-6 4xl:mt-7 md:grid md:grid-cols-2 text-[0.65rem]  md:text-xs 3xl:text-xl 4xl:text-3xl uppercase">
-          <div className="space-y-4 mt-[4vh] md:mt-0 md:space-y-8 3xl:space-y-10 4xl:space-y-16 order-last md:order-first">
+          <div className="space-y-4 mt-[4vh] md:mt-[0vh] md:space-y-8 3xl:space-y-10 4xl:space-y-16 order-last md:order-first">
             <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 md:mt-0 tracking-widest">
               <div className="flex  items-center justify-center">
                 {location && (
