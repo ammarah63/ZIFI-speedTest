@@ -25,19 +25,19 @@ const Header = () => {
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        const res = await fetch(`http://ip-api.com/json/${ipAddress}`);
+        const res = await fetch(`https://ipapi.co/${ipAddress}/json/`);
         const data = await res.json();
 
         if (!res.ok) {
           throw new Error(`Error: ${res.status}`);
         }
 
-        const { city, country, countryCode } = data;
+        const { city, country, country_code } = data;
 
         setLocation({
           city: city || null,
           country: country || null,
-          countryCode: countryCode || null,
+          countryCode: country_code || null,
         });
       } catch (error) {
         console.error("Error fetching IP data:", error);
