@@ -24,7 +24,6 @@ const MoreInformation = ({ setOpen }) => {
   }, []);
 
   useEffect(() => {
-    // Function to update current date and time
     const updateDateTime = () => {
       const now = new Date();
       const currentDate = now.toLocaleDateString();
@@ -35,22 +34,19 @@ const MoreInformation = ({ setOpen }) => {
       });
     };
 
-    // Call the function once when component mounts
     updateDateTime();
 
-    // Update date and time every second (optional, if you want it to continuously update)
     const interval = setInterval(() => {
       updateDateTime();
     }, 1000);
 
-    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        const res = await fetch(`http://ip-api.com/json/${ipAddress}`);
+        const res = await fetch(`https://ip-api.com/json/${ipAddress}`);
         if (!res.ok) {
           throw new Error(`Error: ${res.status}`);
         }
@@ -94,8 +90,8 @@ const MoreInformation = ({ setOpen }) => {
               id="left"
               data-name="Flat Color"
               xmlns="http://www.w3.org/2000/svg"
-              class="icon flat-color ms-10 mt-10 4xl:my-10 3xl:my-6"
-              className="3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12"
+              className="icon flat-color ms-10 mt-10 4xl:my-10 3xl:my-6 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12"
+             
             >
               <path
                 id="primary"
@@ -248,8 +244,8 @@ const MoreInformation = ({ setOpen }) => {
                       id="down"
                       data-name="Multi Color"
                       xmlns="http://www.w3.org/2000/svg"
-                      class="icon multi-color"
-                      className="w-5 h-5 md:w-9 md:h-9 3xl:w-14 3xl:h-14 4xl:w-20 4xl:h-20"
+                      className="icon multi-color w-5 h-5 md:w-9 md:h-9 3xl:w-14 3xl:h-14 4xl:w-20 4xl:h-20"
+                    
                     >
                       <title style={{ strokeWidth: 2 }}>down</title>
                       <path
@@ -294,8 +290,8 @@ const MoreInformation = ({ setOpen }) => {
                       id="up"
                       data-name="Multi Color"
                       xmlns="http://www.w3.org/2000/svg"
-                      class="icon multi-color"
-                      className="w-5 h-5 md:w-9 md:h-9 3xl:w-14 3xl:h-14 4xl:w-20 4xl:h-20"
+                      className="icon multi-color w-5 h-5 md:w-9 md:h-9 3xl:w-14 3xl:h-14 4xl:w-20 4xl:h-20"
+                    
                     >
                       <title style={{ strokeWidth: 2 }}>up</title>
                       <path

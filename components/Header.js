@@ -4,29 +4,28 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const [location, setLocation] = useState(null);
-   const [ipAddress, setIpAddress] = useState("");
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch("https://api64.ipify.org?format=json");
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const data = await response.json();
-          setIpAddress(data.ip);
-        } catch (error) {
-          console.error("Error fetching IP address:", error);
+  const [ipAddress, setIpAddress] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://api64.ipify.org?format=json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      };
+        const data = await response.json();
+        setIpAddress(data.ip);
+      } catch (error) {
+        console.error("Error fetching IP address:", error);
+      }
+    };
 
-      fetchData();
-    }, [ipAddress]); 
-
+    fetchData();
+  }, [ipAddress]);
 
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        const res = await fetch(`http://ip-api.com/json/154.192.1.32`);
+        const res = await fetch(`http://ip-api.com/json/${ipAddress}`);
         const data = await res.json();
 
         if (!res.ok) {

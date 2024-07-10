@@ -55,7 +55,7 @@ const HomeSection = () => {
                       id="down"
                       data-name="Multi Color"
                       xmlns="http://www.w3.org/2000/svg"
-                      class="icon multi-color 3xl:w-14 3xl:h-14 4xl:h-20 4xl:w-20 "
+                      className="icon multi-color 3xl:w-14 3xl:h-14 4xl:h-20 4xl:w-20 "
                     >
                       <title style={{ strokeWidth: 2 }}>down</title>
                       <path
