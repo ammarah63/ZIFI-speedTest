@@ -46,7 +46,7 @@ const MoreInformation = ({ setOpen }) => {
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        const res = await fetch(`https://ip-api.com/json/${ipAddress}`);
+        const res = await fetch(`http://ip-api.com/json/${ipAddress}`);
         if (!res.ok) {
           throw new Error(`Error: ${res.status}`);
         }
