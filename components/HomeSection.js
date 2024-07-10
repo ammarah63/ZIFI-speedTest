@@ -88,7 +88,7 @@ const HomeSection = () => {
               )}
             </div>
           </div>
-          <div className="hidden md:flex justify-center md:justify-end lg:-mt-9 3xl:-mt-10 4xl:-mt-20 md:-mt-3">
+          <div className="hidden md:flex justify-center md:justify-end ">
             {info ? (
               <button
                 onClick={() => setOpen(true)}
