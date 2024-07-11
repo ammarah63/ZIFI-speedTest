@@ -70,7 +70,6 @@ const HomeSection = () => {
   return (
     <>
       <motion.div
-       
         transition={{ duration: 0.25 }}
         className="flex h-[83vh] justify-center items-center"
       >
@@ -88,7 +87,10 @@ const HomeSection = () => {
               <div className="flex md:hidden justify-center md:justify-end md:-mt-5">
                 {info ? (
                   <button
-                    onClick={() => setOpen(true)}
+                    onClick={() => {
+                      setOpen(true);
+                      setIsclicked(false);
+                    }}
                     className="text-sm text-[#7F7F7F] tracking-widest"
                   >
                     MORE INFORMATION
@@ -158,7 +160,10 @@ const HomeSection = () => {
             {info ? (
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={() => {setOpen(true); setIsclicked(false);}}
+                onClick={() => {
+                  setOpen(true);
+                  setIsclicked(false);
+                }}
                 className="text-sm 3xl:text-xl 4xl:text-3xl text-[#7F7F7F] tracking-widest"
               >
                 MORE INFORMATION
