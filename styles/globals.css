@@ -21,6 +21,8 @@
 body {
     font-family: "Lato";
     color: white;
+    /* -webkit-animation: background 10s cubic-bezier(1,0,0,1) infinite;
+    animation: background 10s cubic-bezier(1,0,0,1) infinite;   */
     background-color: black;
   /* color: rgb(var(--foreground-rgb)); */
   /* background: linear-gradient(
@@ -30,6 +32,21 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+
+/* @-webkit-keyframes background {
+  0% { background-color: rgba(255, 153, 153, 0.356); }
+  33% { background-color: rgba(153, 255, 153, 0.363); }  
+  67% { background-color: rgba(153, 153, 255, 0.349); }
+  100% { background-color: rgba(255, 153, 153, 0.247); }
+}
+
+@keyframes background {
+  0% { background-color: rgba(255, 153, 153, 0.26); }
+  33% { background-color: rgba(153, 255, 153, 0.26); }  
+  67% { background-color: rgba(153, 153, 255, 0.212); }
+  100% { background-color: rgba(255, 153, 153, 0); }
+} */
 
 @layer utilities {
   .text-balance {
