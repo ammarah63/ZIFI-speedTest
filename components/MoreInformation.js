@@ -2,13 +2,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, usePresence } from "framer-motion";
 
-
 const MoreInformation = ({ setOpen }) => {
   const [location, setLocation] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState("");
   const [ipAddress, setIpAddress] = useState("");
 
-   const dropIn = {
+  const dropIn = {
     hidden: {
       y: "100vh",
       opacity: 0,
@@ -17,18 +16,17 @@ const MoreInformation = ({ setOpen }) => {
       y: "0",
       opacity: 1,
       transition: {
-        duration: 0.1,
+        duration: 1,
         type: "spring",
         damping: 25,
-        stiffness: 500,
+        stiffness: 100,
       },
     },
     exit: {
-      y: "100vh", 
+      y: "100vh",
       opacity: 0,
     },
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,15 +97,18 @@ const MoreInformation = ({ setOpen }) => {
 
   return (
     <>
-      <motion.div   onClick={(e) => e.stopPropagation()}
-            variants={dropIn}
-            initial="hidden"
-            animate="visible"
-            exit="exit" className="bg-black md:bg-opacity-95 h-3/4 z-50 fixed inset-x-0 inset-y-[2rem] md:inset-y-[4.2rem] lg:inset-y-[4.5rem] 3xl:inset-y-[5.3rem] 4xl:inset-y-[6.9rem]">
+      <motion.div
+        onClick={(e) => e.stopPropagation()}
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="bg-black md:bg-opacity-95 h-3/4 z-50 fixed inset-x-0 inset-y-[2rem] md:inset-y-[4.2rem] lg:inset-y-[4.5rem] 3xl:inset-y-[5.3rem] 4xl:inset-y-[6.9rem]"
+      >
         <p className="text-sm 3xl:text-xl my-4 md:my-0 3xl:mt-10 4xl:mt-16 4xl:text-3xl text-center md:text-start md:ms-5 md:mt-3 text-[#7F7F7F] tracking-widest">
           MORE INFORMATION
         </p>
-        <div className="absolute -top-6 left-2 md:ml-5 3xl:ml-4 4xl:ml-4 md:static ">
+        <div className="absolute -top-16 -left-9 md:ml-5 3xl:ml-4 4xl:ml-4 md:static ">
           <button onClick={() => setOpen(false)} className=" ">
             {" "}
             <svg
@@ -129,7 +130,7 @@ const MoreInformation = ({ setOpen }) => {
           </button>
         </div>
 
-        <div className="flex flex-col md:mt-4 lg:mt-5 3xl:mt-6 4xl:mt-7 md:grid md:grid-cols-2 text-[0.6rem] whitespace-nowrap  md:text-xs 3xl:text-xl 4xl:text-3xl uppercase">
+        <div className="flex flex-col md:mt-4 lg:mt-5 3xl:mt-6 4xl:mt-7 md:grid md:grid-cols-2 text-[0.5rem] whitespace-nowrap  md:text-xs 3xl:text-xl 4xl:text-3xl uppercase">
           <div className="space-y-4 mt-[4vh] md:mt-[0vh] md:space-y-8 3xl:space-y-10 4xl:space-y-16 order-last md:order-first">
             <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 md:mt-0 tracking-widest">
               <div className="flex  items-center justify-center">
@@ -145,7 +146,7 @@ const MoreInformation = ({ setOpen }) => {
                   </>
                 )}
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
                 {" "}
                 <p>CITY</p>
                 <p>COUNTRY</p>
@@ -172,7 +173,7 @@ const MoreInformation = ({ setOpen }) => {
                   />
                 </svg>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
                 <p>LATITUDE</p>
                 <p>LONGITUDE</p>
                 <p>INTERNAL IP</p>
@@ -205,7 +206,7 @@ const MoreInformation = ({ setOpen }) => {
                   />
                 </svg>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 3xl:space-y-2 md:space-y-2 text-[#7F7F7F]">
+              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 3xl:space-y-2 md:space-y-2 text-[#7F7F7F]">
                 <p>PROVIDER</p>
                 <p>ROUTER NAME</p>
                 <p>SERVER</p>
@@ -235,7 +236,7 @@ const MoreInformation = ({ setOpen }) => {
                   />
                 </svg>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
                 <p>DATE</p>
                 <p>TIME</p>
               </div>
@@ -340,7 +341,7 @@ const MoreInformation = ({ setOpen }) => {
             </p>
           </div>
         </div>
-       </motion.div>
+      </motion.div>
     </>
   );
 };
