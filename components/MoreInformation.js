@@ -130,7 +130,7 @@ const MoreInformation = ({ setOpen }) => {
           </button>
         </div>
 
-        <div className="flex flex-col md:mt-4 lg:mt-5 3xl:mt-6 4xl:mt-7 md:grid md:grid-cols-2 text-[0.5rem] whitespace-nowrap  md:text-xs 3xl:text-xl 4xl:text-3xl uppercase">
+        <div className="flex flex-col md:mt-4 lg:mt-5 3xl:mt-6 4xl:mt-7 md:grid md:grid-cols-2 text-[0.5rem] md:text-xs 3xl:text-xl 4xl:text-3xl uppercase">
           <div className="space-y-4 mt-[4vh] md:mt-[0vh] md:space-y-8 3xl:space-y-10 4xl:space-y-16 order-last md:order-first">
             <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 md:mt-0 tracking-widest">
               <div className="flex  items-center justify-center">
@@ -151,7 +151,7 @@ const MoreInformation = ({ setOpen }) => {
                 <p>CITY</p>
                 <p>COUNTRY</p>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
+              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
                 <p>{location?.city}</p>
                 <p>{location?.country}</p>
               </div>
@@ -180,7 +180,7 @@ const MoreInformation = ({ setOpen }) => {
                 <p>EXTERNAL IP</p>
                 <p>MAC ADDRESS</p>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
+              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
                 <p>{location?.lat}</p>
                 <p> {location?.lon}</p>
                 <p>ipAddress</p>
@@ -212,9 +212,11 @@ const MoreInformation = ({ setOpen }) => {
                 <p>SERVER</p>
                 <p>PING</p>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 3xl:space-y-2 md:space-y-2">
+              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 3xl:space-y-2 md:space-y-2">
                 <p>{location?.org}</p>
-                <p>ROUTER NAME</p>
+                <p>
+                  ROUTER NAME
+                </p>
                 <p>SERVER</p>
                 <p>PING</p>
               </div>
@@ -240,7 +242,7 @@ const MoreInformation = ({ setOpen }) => {
                 <p>DATE</p>
                 <p>TIME</p>
               </div>
-              <div className="col-span-2 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
+              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
                 <p>{currentDateTime.currentDate}</p>
                 <p>{currentDateTime.currentTime}</p>
               </div>
