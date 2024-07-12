@@ -10,31 +10,64 @@ const HomeSection = () => {
   const [info, setInfo] = useState(false);
   const ref = useRef(null);
   const [isPresent, safeToRemove] = usePresence();
-  const [isClicked, setIsclicked] = useState(false)
+  const [isClicked, setIsclicked] = useState(true);
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const colors = ["#000000", "#004D4F", "#8B8000", "#2A0134"];
+  //const colors = ["#000000", "#8B8000", "#2A0134", "#AA336A", "#004D4F"];
+ const [fadeIn, setFadeIn] = useState(false);
+ 
+  const [showVideo, setShowVideo] = useState(false);
 
-   const [currentColorIndex, setCurrentColorIndex] = useState(0);
-   const colors = ["#8B8000", "#2A0134", "#AA336A", "#004D4F"]; 
+  useEffect(() => {
+    if (isClicked &&colors[currentColorIndex] === "#2A0134") {
+      setShowVideo(true);
+    } else {
+      setShowVideo(false);
+    }
+  }, [currentColorIndex]);
+
+  const [showImage, setShowImage] = useState(false);
+
+
+  useEffect(() => {
+    let intervalId;
+
+    if (isClicked) {
+      intervalId = setInterval(
+        () => {
+          setCurrentColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+        },
+        colors[currentColorIndex] === "#2A0134" ? 175000 : 10000
+      );
+    } else {
+      clearInterval(intervalId);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [isClicked, currentColorIndex]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = isClicked
+      ? colors[currentColorIndex]
+      : "black";
 
    
-   useEffect(() => {
-     let interval;
-     if (isClicked) {
-       interval = setInterval(() => {
-         setCurrentColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
-       }, 3000);
-     } else {
-       clearInterval(interval);
-     }
-     return () => clearInterval(interval); 
-   }, [isClicked]);
+    if (isClicked && colors[currentColorIndex] === "#2A0134") {
+      setShowVideo(true);
+      setShowImage(false);
+    } else if (isClicked &&colors[currentColorIndex] === "#004D4F") {
+      setShowImage(true);
+      setShowVideo(false);
+    } else {
+      setShowVideo(false);
+      setShowImage(false);
+    }
 
-   useEffect(() => {
-     document.body.style.backgroundColor = isClicked
-       ? colors[currentColorIndex]
-       : "black";
-   }, [isClicked, currentColorIndex]);
-
-
+ 
+    if (showVideo && colors[currentColorIndex] !== "#2A0134") {
+      setShowVideo(false);
+    }
+  }, [isClicked, currentColorIndex]);
 
   useEffect(() => {
     if (!isPresent) {
@@ -44,6 +77,14 @@ const HomeSection = () => {
       });
     }
   }, [isPresent, safeToRemove]);
+
+    useEffect(() => {
+      setFadeIn(true);
+      const timeout = setTimeout(() => {
+        setFadeIn(false);
+      }, 500);
+      return () => clearTimeout(timeout);
+    }, []);
 
   useEffect(() => {
     let intervalId;
@@ -66,13 +107,9 @@ const HomeSection = () => {
     }
     return () => clearInterval(intervalId);
   }, [go]);
-
   return (
     <>
-      <motion.div
-        transition={{ duration: 0.25 }}
-        className="flex h-[83vh] justify-center items-center"
-      >
+      <motion.div className=" flex h-[83vh] justify-center items-center">
         <div className="md:ml-auto flex-col md:items-center justify-center">
           <div className="flex-col flex justify-center md:flex-row md:items-center md:space-y-5 ">
             <div>
@@ -179,9 +216,55 @@ const HomeSection = () => {
           </div>
         </div>
       </motion.div>
+      {showVideo && (
+        <div
+       
+          id="video"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            // width: "100vw",
+            // height: "100vh",
+            zIndex: -1,
+          }}
+        >
+          <iframe
+            // width="100%"
+            // height="100%"
+            src="https://www.youtube.com/embed/zSWdZVtXT7E?si=w3FsNd4zKEsf722Z&amp;controls=0&autoplay=1&mute=1&loop=1&showinfo=0&modestbranding=1&disablekb=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
+
+      {/* Image component */}
+      {showImage && (
+        <motion.img
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showImage ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+          src="/assets/ImageBackground.jpg"
+          alt="background image"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        />
+      )}
 
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
-        {open ? <MoreInformation setOpen={setOpen} /> : null}
+        {open ? (
+          <MoreInformation setOpen={setOpen} setIsclicked={setIsclicked} />
+        ) : null}
       </AnimatePresence>
     </>
   );

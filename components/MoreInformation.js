@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, usePresence } from "framer-motion";
 
-const MoreInformation = ({ setOpen }) => {
+const MoreInformation = ({ setOpen, setIsclicked }) => {
   const [location, setLocation] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState("");
   const [ipAddress, setIpAddress] = useState("");
@@ -109,7 +109,7 @@ const MoreInformation = ({ setOpen }) => {
           MORE INFORMATION
         </p>
         <div className="absolute -top-16 -left-9 md:ml-5 3xl:ml-4 4xl:ml-4 md:static ">
-          <button onClick={() => setOpen(false)} className=" ">
+          <button onClick={() => {setOpen(false); setIsclicked(true);}} className=" ">
             {" "}
             <svg
               fill="#000000"
@@ -132,8 +132,8 @@ const MoreInformation = ({ setOpen }) => {
 
         <div className="flex flex-col md:mt-4 lg:mt-5 3xl:mt-6 4xl:mt-7 md:grid md:grid-cols-2 text-[0.5rem] md:text-xs 3xl:text-xl 4xl:text-3xl uppercase">
           <div className="space-y-4 mt-[4vh] md:mt-[0vh] md:space-y-8 3xl:space-y-10 4xl:space-y-16 order-last md:order-first">
-            <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 md:mt-0 tracking-widest">
-              <div className="flex  items-center justify-center">
+            <div className="grid grid-cols-5 lg:grid-cols-6  3xl:grid-cols-5 md:mt-0 tracking-widest">
+              <div className="flex items-center justify-center">
                 {location && (
                   <>
                     <Image
@@ -146,19 +146,27 @@ const MoreInformation = ({ setOpen }) => {
                   </>
                 )}
               </div>
-              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
-                {" "}
-                <p>CITY</p>
-                <p>COUNTRY</p>
+              <div className="col-span-4 lg:col-span-5 3xl:col-span-4 space-y-1 md:space-y-2 3xl:space-y-2">
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>CITY</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>{location?.city}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>COUNTRY</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>{location?.country}</p>
+                  </div>
+                </div>
               </div>
-              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
-                <p>{location?.city}</p>
-                <p>{location?.country}</p>
-              </div>
-              <div className="hidden md:col-span-3 "></div>
             </div>
 
-            <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 tracking-widest">
+            <div className="grid grid-cols-5 lg:grid-cols-6  3xl:grid-cols-5 md:mt-0 tracking-widest">
               <div className="flex items-center justify-center">
                 <svg
                   width="40px"
@@ -173,24 +181,51 @@ const MoreInformation = ({ setOpen }) => {
                   />
                 </svg>
               </div>
-              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
-                <p>LATITUDE</p>
-                <p>LONGITUDE</p>
-                <p>INTERNAL IP</p>
-                <p>EXTERNAL IP</p>
-                <p>MAC ADDRESS</p>
+              <div className="col-span-4 lg:col-span-5 3xl:col-span-4 space-y-1 md:space-y-2 3xl:space-y-2">
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>LATITUDE</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>{location?.lat}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>LONGITUDE</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p> {location?.lon}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>INTERNAL IP</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>INTERNAL IP</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>EXTERNAL IP</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>EXTERNAL IP</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>MAC ADDRESS</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>MAC ADDRESS</p>
+                  </div>
+                </div>
               </div>
-              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
-                <p>{location?.lat}</p>
-                <p> {location?.lon}</p>
-                <p>ipAddress</p>
-                <p>ipAddress</p>
-                <p>MAC ADDRESS</p>
-              </div>
-              <div className="hidden lg:col-span-3 "></div>
             </div>
 
-            <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 tracking-widest">
+            <div className="grid grid-cols-5 lg:grid-cols-6  3xl:grid-cols-5 md:mt-0 tracking-widest">
               <div className="flex items-center justify-center">
                 <svg
                   // fill="#000000"
@@ -206,23 +241,46 @@ const MoreInformation = ({ setOpen }) => {
                   />
                 </svg>
               </div>
-              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 3xl:space-y-2 md:space-y-2 text-[#7F7F7F]">
-                <p>PROVIDER</p>
-                <p>ROUTER NAME</p>
-                <p>SERVER</p>
-                <p>PING</p>
+              <div className="col-span-4 lg:col-span-5 3xl:col-span-4 space-y-1 md:space-y-2 3xl:space-y-2">
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>PROVIDER</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>{location?.org}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>ROUTER NAME </p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>
+                      ROUTER NAME
+                    </p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>SERVER</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>SERVER</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>PING</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>PING</p>
+                  </div>
+                </div>
               </div>
-              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 3xl:space-y-2 md:space-y-2">
-                <p>{location?.org}</p>
-                <p>
-                  ROUTER NAME
-                </p>
-                <p>SERVER</p>
-                <p>PING</p>
-              </div>
-              <div className="hidden lg:col-span-3 "></div>
             </div>
-            <div className="grid grid-cols-5 md:grid-cols-6 3xl:grid-cols-5 tracking-widest">
+
+
+            <div className="grid grid-cols-5 lg:grid-cols-6  3xl:grid-cols-5 md:mt-0 tracking-widest">
               <div className="flex items-center justify-center">
                 <svg
                   // fill="#000000"
@@ -238,15 +296,24 @@ const MoreInformation = ({ setOpen }) => {
                   />
                 </svg>
               </div>
-              <div className="col-span-1 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
-                <p>DATE</p>
-                <p>TIME</p>
+              <div className="col-span-4 lg:col-span-5 3xl:col-span-4 space-y-1 md:space-y-2 3xl:space-y-2">
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>DATE</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>{currentDateTime.currentDate}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 lg:grid-cols-5 3xl:grid-cols-4">
+                  <div className="col-span-1 3xl:col-span-1 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2 text-[#7F7F7F]">
+                    <p>TIME</p>
+                  </div>
+                  <div className="col-span-3 ps-4 lg:col-span-4 3xl:col-span-3 space-y-1 md:space-y-2 3xl:space-y-2">
+                    <p>{currentDateTime.currentTime}</p>
+                  </div>
+                </div>
               </div>
-              <div className="col-span-2 ps-4 3xl:col-span-2 lg:col-span-1 space-y-1 md:space-y-2 3xl:space-y-2">
-                <p>{currentDateTime.currentDate}</p>
-                <p>{currentDateTime.currentTime}</p>
-              </div>
-              <div className="hidden lg:col-span-3 "></div>
             </div>
           </div>
 

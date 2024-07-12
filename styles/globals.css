@@ -4,6 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
+#video {
+  /* position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden; */
+  	overflow: hidden;
+	width: 100%;
+	/* Keep it the right aspect-ratio */
+	aspect-ratio: 16/10;
+	/* No clicking/hover effects */
+	pointer-events: none;
+}
+
+.fadeIn {
+  animation: fadeInAnimation 0.5s ease-in-out;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+#video iframe {
+  	width: 300%;
+		height: 100%;
+		/* ...and bring it back again */
+		margin-left: -100%;
+    margin-top: -110px;
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: -10vh;
+  width: 100%;
+  height: 100%;
+  border: 0; */
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -19,11 +62,13 @@
 } */
 
 body {
-    font-family: "Lato";
-    color: white;
-    /* -webkit-animation: background 10s cubic-bezier(1,0,0,1) infinite;
+  font-family: "Lato";
+  color: white;
+  margin: 0;
+  padding: 0;
+  /* -webkit-animation: background 10s cubic-bezier(1,0,0,1) infinite;
     animation: background 10s cubic-bezier(1,0,0,1) infinite;   */
-    background-color: black;
+  background-color: black;
   /* color: rgb(var(--foreground-rgb)); */
   /* background: linear-gradient(
       to bottom,
@@ -32,7 +77,6 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
-
 
 /* @-webkit-keyframes background {
   0% { background-color: rgba(255, 153, 153, 0.356); }
