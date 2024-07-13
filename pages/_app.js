@@ -1,23 +1,26 @@
+import { ColorProvider } from "@/ColorContext";
 import { Footer, Header } from "@/components";
 import "@/styles/globals.css";
-//locationData={location}
+
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <div className="h-screen px-3 md:px-8">
-        <div className="h-[5vh]">
-          <Header />
+      <ColorProvider>
+        <div className="h-screen px-3 md:px-8">
+          <div className="h-[5vh]">
+            <Header />
+          </div>
+          <div className="h-[89vh] md:h-[87vh] 3xl:h-[88vh] 4xl:h-[88vh]">
+            {" "}
+            <Component {...pageProps} />
+          </div>
+          <div className=" h-[5vh]">
+            {" "}
+            <Footer />
+          </div>
         </div>
-        <div className="h-[89vh] md:h-[87vh] 3xl:h-[88vh] 4xl:h-[88vh]">
-          {" "}
-          <Component {...pageProps} />
-        </div>
-        <div className=" h-[5vh]">
-          {" "}
-          <Footer />
-        </div>
-      </div>
+      </ColorProvider>
     </>
   );
 }

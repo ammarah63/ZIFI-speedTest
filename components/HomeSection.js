@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import MoreInformation from "./MoreInformation";
 import { AnimatePresence, motion, usePresence } from "framer-motion";
 import { gsap } from "gsap";
+import Image from "../public/assets/ImageBackground.svg";
+import { useTextColor } from "@/ColorContext";
 
 const HomeSection = () => {
   const [open, setOpen] = useState(false);
@@ -13,11 +15,12 @@ const HomeSection = () => {
   const [isClicked, setIsclicked] = useState(true);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const colors = ["#000000", "#004D4F", "#8B8000", "#2A0134"];
+  const { textColor, changeTextColor } = useTextColor();
   //const colors = ["#000000", "#8B8000", "#2A0134", "#AA336A", "#004D4F"];
- const [fadeIn, setFadeIn] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
  
   const [showVideo, setShowVideo] = useState(false);
-    const [textColor, setTextColor] = useState("#FFFFFF");
+    // const [textColor, setTextColor] = useState("#FFFFFF");
 
   useEffect(() => {
     if (isClicked &&colors[currentColorIndex] === "#2A0134") {
@@ -55,20 +58,20 @@ const HomeSection = () => {
      if (isClicked && colors[currentColorIndex] === "#2A0134") {
        setShowVideo(true);
        setShowImage(false);
-       setTextColor("#FFFF00");
+       changeTextColor("#FFFF00");
      } else if (isClicked && colors[currentColorIndex] === "#004D4F") {
        setShowImage(true);
        setShowVideo(false);
-       setTextColor("#C8A2C8"); 
+       changeTextColor("#C8A2C8"); 
      } else {
        setShowVideo(false);
        setShowImage(false);
-       setTextColor("#FFFFFF"); 
+       changeTextColor("#FFFFFF"); 
      }
 
      if (showVideo && colors[currentColorIndex] !== "#2A0134") {
        setShowVideo(false);
-       setTextColor("#FFFFFF"); 
+       changeTextColor("#FFFFFF"); 
      }
    }, [isClicked, currentColorIndex]);
 
@@ -252,7 +255,7 @@ const HomeSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: showImage ? 1 : 0 }}
           transition={{ duration: 0.5 }}
-          src="/assets/ImageBackground.jpg"
+          src={"/assets/ImageBackground.svg"}
           alt="background image"
           style={{
             position: "fixed",
