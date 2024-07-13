@@ -17,6 +17,7 @@ const HomeSection = () => {
  const [fadeIn, setFadeIn] = useState(false);
  
   const [showVideo, setShowVideo] = useState(false);
+    const [textColor, setTextColor] = useState("#FFFFFF");
 
   useEffect(() => {
     if (isClicked &&colors[currentColorIndex] === "#2A0134") {
@@ -46,28 +47,30 @@ const HomeSection = () => {
     return () => clearInterval(intervalId);
   }, [isClicked, currentColorIndex]);
 
-  useEffect(() => {
-    document.body.style.backgroundColor = isClicked
-      ? colors[currentColorIndex]
-      : "black";
+   useEffect(() => {
+     document.body.style.backgroundColor = isClicked
+       ? colors[currentColorIndex]
+       : "#000000";
 
-   
-    if (isClicked && colors[currentColorIndex] === "#2A0134") {
-      setShowVideo(true);
-      setShowImage(false);
-    } else if (isClicked &&colors[currentColorIndex] === "#004D4F") {
-      setShowImage(true);
-      setShowVideo(false);
-    } else {
-      setShowVideo(false);
-      setShowImage(false);
-    }
+     if (isClicked && colors[currentColorIndex] === "#2A0134") {
+       setShowVideo(true);
+       setShowImage(false);
+       setTextColor("#FFFF00");
+     } else if (isClicked && colors[currentColorIndex] === "#004D4F") {
+       setShowImage(true);
+       setShowVideo(false);
+       setTextColor("#C8A2C8"); 
+     } else {
+       setShowVideo(false);
+       setShowImage(false);
+       setTextColor("#FFFFFF"); 
+     }
 
- 
-    if (showVideo && colors[currentColorIndex] !== "#2A0134") {
-      setShowVideo(false);
-    }
-  }, [isClicked, currentColorIndex]);
+     if (showVideo && colors[currentColorIndex] !== "#2A0134") {
+       setShowVideo(false);
+       setTextColor("#FFFFFF"); 
+     }
+   }, [isClicked, currentColorIndex]);
 
   useEffect(() => {
     if (!isPresent) {
@@ -109,7 +112,10 @@ const HomeSection = () => {
   }, [go]);
   return (
     <>
-      <motion.div className=" flex h-[83vh] justify-center items-center">
+      <motion.div
+        style={{ color: textColor }}
+        className=" flex h-[83vh] justify-center items-center"
+      >
         <div className="md:ml-auto flex-col md:items-center justify-center">
           <div className="flex-col flex justify-center md:flex-row md:items-center md:space-y-5 ">
             <div>
@@ -218,22 +224,21 @@ const HomeSection = () => {
       </motion.div>
       {showVideo && (
         <div
-       
           id="video"
           style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
+            // position: "fixed",
+            // top: 0,
+            // left: 0,
             // width: "100vw",
             // height: "100vh",
             zIndex: -1,
           }}
         >
           <iframe
-            // width="100%"
-            // height="100%"
+            width="100%"
+            height="200%"
             src="https://www.youtube.com/embed/zSWdZVtXT7E?si=w3FsNd4zKEsf722Z&amp;controls=0&autoplay=1&mute=1&loop=1&showinfo=0&modestbranding=1&disablekb=1"
-            title="YouTube video player"
+            // title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
