@@ -70,6 +70,28 @@
   }
 }
 
+
+@media (min-width: 437px) and (min-height:832px) {
+  #video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600%;
+    height: 700%;
+    margin-top: -300%;
+    object-fit: cover;
+  }
+}
+
 @media (min-width: 390px) and (min-height:844px) {
   #video {
     position: absolute;
